@@ -1,0 +1,115 @@
+
+{% load static%}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Content</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+	/* Custom style */
+    .navbar{
+        margin-bottom: 1rem;
+    }
+
+    .post-container {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+    
+    /* Style the post title */
+    .post-container h2 {
+        color: #333;
+        font-size: 24px;
+    }
+    
+    /* Style the post content */
+    .post-container p {
+        color: #666;
+    }
+
+
+
+</style>
+
+</head>
+<body>
+
+
+
+     <div class>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container-fluid">
+            <a href='content/create' class="navbar-brand">Create Post</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse4">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse4">
+              
+                <form class="d-flex ms-auto" action="/login/delete">
+                
+                    <button type="submit" class="btn btn-outline-light">LogOut</button>
+                </form>
+            </div>
+        </div>        
+    </nav>
+</div> 
+
+
+<!-- <div >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarCollapse4">
+              <div class="navbar-nav">
+                  <a href='/home' class="nav-item nav-link active">Home</a>
+              </div>
+          </div>
+      </div>        
+  </nav>
+</div> -->
+
+
+<h1>Welcome {{ request.COOKIES.username }}</h1>
+
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this post?');
+    }
+</script>
+
+
+
+
+
+<div class="container">
+    {% for item in data %}
+        <div class="post-container">
+        <p> {{ item.Post }} </p>
+        <h8 style="text-align:right">Posted by : {{item.UserName}}</h8>
+        {% if username == item.UserName%}
+        <a href="delete/{{item.id}}" class="delete-link" onclick="return confirmDelete();">Delete</a>
+        {%endif%}
+    </div>
+    <!-- Replace field_name with the actual field you want to display -->
+   {% endfor %}
+</div>
+
+
+
+
+
+
+</body>
+</html>
